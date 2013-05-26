@@ -9,7 +9,7 @@ multiple graphics into a texture.
 ### Inspiration
 
 This code is a straight adaptation of the code found
-![Packing Lightmaps](http://www.blackpawn.com/texts/lightmaps/).
+[Packing Lightmaps](http://www.blackpawn.com/texts/lightmaps/).
 
 
 ### Interface
