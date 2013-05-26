@@ -65,4 +65,7 @@ The resulting html shows a picture like this:
 
 <img src="http://raw.github.com/woudshoo/rectangle-packing/master/sample.png">
 
+And another attempt
+
+![Screen shot of browser](sample.png)
 
