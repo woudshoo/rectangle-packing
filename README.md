@@ -6,6 +6,12 @@ given a set of rectangles, pack them into a square/rectangle.
 I wrote this because I am playing with OpenGL and want to pack
 multiple graphics into a texture.
 
+### Inspiration
+
+This code is a straight adaptation of the code found
+![http://www.blackpawn.com/texts/lightmaps/](Packing Lightmaps).
+
+
 ### Interface
 
 The main interface consists of two functions `pack-rectangles` and
@@ -38,6 +44,12 @@ the width and height of the rectangle.  So for example
 1. `tree-utilized-size` takes one argument, a tree, and returns the packed size.
 2. `rectangle-tree-to-rectangle-list` takes a tree as an argument and returns the same output as `pack-rectangles`.
 3. `write-html` takes a tree and a file name and write a html file which will show the packing.
+
+### Tips
+
+The code tries to place the rectangles in the order they are given.  It turns out that
+it pays off to trie them in order of size.  E.g. first sort them on either area or lexicographically
+on the coordinates.
 
 ### Example
 
