@@ -61,11 +61,14 @@ Or using the tree
 NIL
 ```
 
-The resulting html shows a picture like this:
-
-<img src="http://raw.github.com/woudshoo/rectangle-packing/master/sample.png">
-
-And another attempt
+The resulting html shows a picture like this,
+note that the target size was very large, so red rectangle
+sticking out to the right easily fits.
 
 ![Screen shot of browser](sample.png)
 
+
+### Improvements
+
+1. It should have the ability to automatically increase the target size.
+2. It should also try rotations.
