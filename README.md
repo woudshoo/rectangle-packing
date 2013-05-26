@@ -63,43 +63,6 @@ NIL
 
 The resulting html shows a picture like this:
 
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-   <rect rx="10" ry="10" 
-         x="0" y="0" width="100" height="200" 
-         style="fill:red;stroke:black;opacity=0.1" />
-  <!-- low = (0 0) high = (100 200)   (rect: (100 200 Hallo))-->
-  <rect rx="10" ry="10" 
-         x="0" y="200" width="50" height="100" 
-         style="fill:red;stroke:black;opacity=0.1" />
-  <!-- low = (0 200) high = (50 300)   (rect: (50 100 Tall))-->
-  <rect rx="10" ry="10" 
-         x="0" y="300" width="50" height="100" 
-         style="fill:blue;stroke:black;opacity=0.1" />
-  <!-- low = (0 300) high = (50 NIL)   (rect: NIL)-->
-  <rect rx="10" ry="10" 
-         x="50" y="200" width="50" height="200" 
-         style="fill:blue;stroke:black;opacity=0.1" />
-  <!-- low = (50 200) high = (100 NIL)   (rect: NIL)-->
-  <rect rx="10" ry="10" 
-         x="100" y="0" width="300" height="400" 
-         style="fill:red;stroke:black;opacity=0.1" />
-  <!-- low = (100 0) high = (400 400)   (rect: (300 400 Nr 2))-->
-  <rect rx="10" ry="10" 
-         x="400" y="0" width="200" height="30" 
-         style="fill:red;stroke:black;opacity=0.1" />
-  <!-- low = (400 0) high = (600 30)   (rect: (200 30 Wide))-->
-  <rect rx="10" ry="10" 
-         x="600" y="0" width="0" height="30" 
-         style="fill:blue;stroke:black;opacity=0.1" />
-  <!-- low = (600 0) high = (NIL 30)   (rect: NIL)-->
-  <rect rx="10" ry="10" 
-         x="400" y="30" width="200" height="370" 
-         style="fill:blue;stroke:black;opacity=0.1" />
-  <!-- low = (400 30) high = (NIL 400)   (rect: NIL)-->
-  <rect rx="10" ry="10" 
-         x="100" y="400" width="500" height="0" 
-         style="fill:blue;stroke:black;opacity=0.1" />
-  <!-- low = (100 400) high = (NIL NIL)   (rect: NIL)-->
-</svg>
+<img src="http://raw.github.com/woudshoo/rectangle-packing/master/sample.png">
 
 
