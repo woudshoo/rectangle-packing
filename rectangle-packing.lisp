@@ -3,6 +3,8 @@
 (in-package #:rectangle-packing)
 
 ;;; "rectangle-packing" goes here. Hacks and glory await!
+(defparameter *size* (list 0 0))
+
 
 (defun pack-rectangles-tree (rectangles &key (size (list 1000 1000)))
   "Takes a list of rectangles, where each rectangle
@@ -17,6 +19,14 @@ If some rectangles do not fit they are silently skipped.  To see if
 the rectangles are skipped you have to call 
 `rectangle-tree-to-rectangle-list' and compare the length of the
 resulting list. 
+
+NOTE: This function tries to pack the rectangles one by one.  
+      So the sort order can have a huge impact on the efficiency 
+      of the packing.  
+
+      Experience has shown that in practice it is good idea to
+      sort the rectangles on size (the area).  With the largest
+      rectangles first.
 "
 
   (let ((root (make-instance 'node :content (make-instance 'target-rectangle)))
@@ -61,6 +71,9 @@ dropped from the packing and from the output.
 To see which rectangles are packed you can use
 
    (mapcar (pack-rectangles ...) #'cdddr)
+
+NOTE: See also the note on the sort order of the rectangles in the 
+      function `pack-rectangles-tree'
  "
 
   (rectangle-tree-to-rectangle-list (pack-rectangles-tree rectangles :size size)))
@@ -88,8 +101,6 @@ The return value is a list of two elements:
 			     (setf max-0 (max max-0 (hv content 0)))
 			     (setf max-1 (max max-1 (hv content 1))))))
     (list max-0 max-1)))
-
-(defparameter *size* (list 0 0))
 
 (defclass node ()
   ((content :accessor content :initform nil :initarg :content)
