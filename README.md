@@ -84,3 +84,13 @@ sticking out to the right easily fits.
 
 1. It should have the ability to automatically increase the target size.
 2. It should also try rotations.
+3. Performance, it is currently not optimized for performance.  If
+   performance is an issue, there is a lot that can be done to make it
+   faster. 
+
+### LICENSE
+
+It is licensed under LLGPL.  This is because it is my default license
+when I do not want to think about licensing stuff.  However, I am
+flexible and if you want any other license, ask me, and I am likely to
+agree with it.

@@ -8,8 +8,15 @@
   "Takes a list of rectangles, where each rectangle
 is specified as (width height . rest).
 
-Returns a tree containing the pack information.  This can be used to add additional rectangles
-later.
+Returns a tree containing the pack information.  
+
+The size parameter is a list of the form (width height . rest) and 
+this specifies size of the target rectangle in which all the rectangles are packed.
+
+If some rectangles do not fit they are silently skipped.  To see if
+the rectangles are skipped you have to call 
+`rectangle-tree-to-rectangle-list' and compare the length of the
+resulting list. 
 "
 
   (let ((root (make-instance 'node :content (make-instance 'target-rectangle)))
@@ -21,6 +28,16 @@ later.
     root))
 
 (defun rectangle-tree-to-rectangle-list (root)
+  "Takes a rectangle tree as returned by `pack-rectangles-tree' as argument and returns
+the packed rectangles as a list.
+
+Each item of the list is rectangle, specified as (x y orientation . rectangle)
+where 'rectangle' is one of the original inputed rectangle.
+The location of the packed rectangle is given by 'x' and 'y'.
+
+Orientation is either :0 or :90 depending if the rectangle is placed as given, or rotated.
+Note that the current algorithm does not use rotation and will always have :0 as orientation.
+"
   (let (result)
     (walk-tree-pre-order root (lambda (content) 
 				(when (placed-rectangle-p content)
@@ -31,14 +48,38 @@ later.
   "Takes a list of rectangles, where each rectangle
 is specified as (width height . rest).
 
+The size argument specifies the size of the target rectangle.
+
 Returns a list of (x y orientation . rectangle)
 Where rectangle is one of the argument rectangles
-and orientation is either :0 or :90 (when it is rotated)."
+and orientation is either :0 or :90 (when it is rotated).
+The location of the rectangles is given by 'x' and 'y'.
+
+Note that if not all rectangles can be placed, they will be silently
+dropped from the packing and from the output.  
+
+To see which rectangles are packed you can use
+
+   (mapcar (pack-rectangles ...) #'cdddr)
+ "
 
   (rectangle-tree-to-rectangle-list (pack-rectangles-tree rectangles :size size)))
 
 
 (defun tree-utilized-size (node)
+  "Returns the minimum enclosing rectangle of the rectangle tree `node'.
+
+If the `node' is created with `pack-rectangles-tree' the result is 
+guarenteed (with restrictions, see the `pack-rectangles-tree' function)
+to fit in the given size.  
+
+However it is of course possible that the packing does not use the whole 
+rectangle.  This function returns the smallest enclosing rectangle for the packing.
+
+The return value is a list of two elements:
+
+  (width height)
+"
   (let ((max-0 0)
 	(max-1 0))
     (walk-tree-pre-order node
@@ -172,7 +213,10 @@ node ... (target-rectangle = rectangle)
 
 (defun write-html (node file-name)
   "Writes a packing tree to an html file so the packing can be previewd.
-The red rectangles are placed, the blue is empty space."
+The red rectangles are placed, the blue is empty space.
+
+See `pack-rectangles-tree' for how to create a packing tree.
+"
   (with-open-file (s file-name :direction :output :if-exists :supersede)
     (let ((*size* (tree-utilized-size node)))
       (format s "<html><body>
