@@ -102,6 +102,14 @@ The return value is a list of two elements:
 			     (setf max-1 (max max-1 (hv content 1))))))
     (list max-0 max-1)))
 
+
+(defun sort-rectangles-on-size (rectangles)
+  "Sort the `rectangles' form largest to smalles area.
+This operation is non-destructive and for the format of the `rectangles' argument 
+see `pack-rectangles'."
+
+  (sort (copy-seq rectangles) #'> :key (lambda (rect) (* (nth 0 rect) (nth 1 rect)))))
+
 (defclass node ()
   ((content :accessor content :initform nil :initarg :content)
    (left-child :accessor left-child :initform nil)

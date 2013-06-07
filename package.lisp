@@ -7,5 +7,6 @@
    :pack-rectangles
    :write-html
    :tree-utilized-size
-   :rectangle-tree-to-rectangle-list))
+   :rectangle-tree-to-rectangle-list
+   :sort-rectangles-on-size))
 
